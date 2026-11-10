@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Challa Ashwanth Reddy – Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Challa Ashwanth Reddy: full-stack developer, AI/ML enthusiast and cyber security undergraduate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+/* ===== Tokens ===== */
+:root {
+  --bg: #0d1020;
+  --surface: #151a30;
+  --line: #262d4d;
+  --text: #e8eaf6;
+  --muted: #9aa3c7;
+  --violet: #8b5cf6;
+  --blue: #3b82f6;
+  --grad: linear-gradient(120deg, var(--violet), var(--blue));
+  --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+section { padding: 96px 24px; max-width: 1080px; margin: 0 auto; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 40px; }
+h2::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 4px; background: var(--grad); margin-top: 12px; }
+
+/* ===== Nav ===== */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 14px 24px;
+  background: rgba(13, 16, 32, .85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.logo { font-family: 'Poppins', sans-serif; font-weight: 700; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }
+nav ul { display: flex; gap: 22px; list-style: none; overflow-x: auto; scrollbar-width: none; }
+nav ul a { color: var(--muted); font-size: .92rem; transition: color .2s; white-space: nowrap; }
+nav ul a:hover { color: var(--text); }
+
+/* ===== Hero ===== */
+.hero { min-height: 88vh; display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
+.hero-text { animation: rise .9s ease both; }
+.hero h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); margin-bottom: 14px; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.typing {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  color: var(--blue); font-size: clamp(.95rem, 2.4vw, 1.2rem);
+  display: inline-block; white-space: nowrap; overflow: hidden;
+  border-right: 2px solid var(--violet);
+  width: 38ch; max-width: 100%;
+  animation: type 3.2s steps(38) .6s both, caret .8s step-end infinite;
+}
+.bio { color: var(--muted); max-width: 52ch; margin: 22px 0 30px; }
+.btn {
+  display: inline-block; padding: 13px 28px; border-radius: 999px; font-weight: 600;
+  background: var(--grad); color: #fff; border: 0; cursor: pointer; font-size: 1rem; font-family: inherit;
+  box-shadow: 0 8px 28px rgba(99, 102, 241, .35);
+  transition: transform .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(99, 102, 241, .5); }
+.btn.ghost { background: transparent; border: 1px solid var(--line); box-shadow: none; margin-left: 10px; }
+.avatar-wrap { justify-self: center; position: relative; width: min(320px, 78vw); aspect-ratio: 4/5; animation: float 6s ease-in-out infinite; }
+.avatar-wrap::before { content: ""; position: absolute; inset: -4px; border-radius: 28px; background: var(--grad); filter: blur(22px); opacity: .55; }
+.avatar-wrap img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; border-radius: 24px; border: 3px solid var(--bg); }
+
+/* ===== Skills ===== */
+.about p { color: var(--muted); max-width: 66ch; margin-bottom: 40px; }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.skill-group h3 { font-size: 1rem; margin-bottom: 14px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pills span { font-size: .82rem; padding: 5px 12px; border-radius: 999px; background: rgba(139, 92, 246, .12); border: 1px solid rgba(139, 92, 246, .3); transition: transform .2s, background .2s; }
+.pills span:hover { transform: translateY(-2px); background: rgba(59, 130, 246, .2); }
+
+/* ===== Projects ===== */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .3s, border-color .3s, box-shadow .3s; }
+.card:hover { transform: translateY(-8px); border-color: var(--violet); box-shadow: 0 18px 40px rgba(0, 0, 0, .4); }
+.thumb { aspect-ratio: 16/9; overflow: hidden; background: var(--grad); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
+.card:hover .thumb img { transform: scale(1.08); }
+.card-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.card h3 { font-size: 1.15rem; }
+.card p { color: var(--muted); font-size: .93rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.tags span { font-size: .75rem; padding: 3px 10px; border-radius: 6px; background: rgba(59, 130, 246, .14); color: #93c5fd; }
+.card a.link { font-weight: 600; color: #a78bfa; }
+.card a.link:hover { text-decoration: underline; }
+
+/* ===== Timeline ===== */
+.timeline { position: relative; padding-left: 34px; border-left: 2px solid var(--line); display: grid; gap: 34px; }
+.t-item { position: relative; }
+.t-item::before { content: ""; position: absolute; left: -43px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 0 5px var(--bg), 0 0 16px var(--violet); }
+.t-date { color: var(--blue); font-size: .85rem; font-weight: 600; }
+.t-item h3 { font-size: 1.15rem; margin: 2px 0 8px; }
+.t-item ul { color: var(--muted); padding-left: 18px; display: grid; gap: 6px; font-size: .95rem; }
+.t-item p { color: var(--muted); font-size: .95rem; }
+
+/* ===== Contact ===== */
+.contact-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+.contact-wrap > div > p { color: var(--muted); margin-bottom: 22px; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.contact-links a { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 600; font-size: .93rem; max-width: 100%; transition: transform .2s, background .2s, border-color .2s; }
+.contact-links a:hover { background: var(--grad); border-color: transparent; transform: translateY(-2px); }
+.contact-links svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+.socials { display: flex; gap: 12px; }
+.socials a { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); transition: transform .2s, background .2s; }
+.socials a:hover { background: var(--grad); transform: translateY(-3px); }
+.socials svg { width: 20px; height: 20px; fill: currentColor; }
+form { display: grid; gap: 14px; }
+input, textarea { width: 100%; padding: 13px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; transition: border-color .2s; }
+input:focus, textarea:focus { outline: none; border-color: var(--violet); }
+textarea { min-height: 140px; resize: vertical; }
+form .btn { justify-self: start; }
+
+/* ===== Contact form feedback (added for EmailJS delivery) ===== */
+.field { display: grid; gap: 6px; }
+.field-error { display: none; color: #fca5a5; font-size: .82rem; line-height: 1.45; }
+.field-error.show { display: block; }
+input.invalid, textarea.invalid { border-color: #ef4444; }
+input.invalid:focus, textarea.invalid:focus { border-color: #ef4444; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { display: none; font-size: .92rem; padding: 12px 16px; border-radius: 12px; border: 1px solid transparent; }
+.form-status.show { display: block; }
+.form-status.success { background: rgba(34, 197, 94, .12); border-color: rgba(34, 197, 94, .4); color: #86efac; }
+.form-status.error { background: rgba(239, 68, 68, .12); border-color: rgba(239, 68, 68, .4); color: #fca5a5; }
+.btn:disabled { opacity: .72; cursor: not-allowed; transform: none; box-shadow: none; }
+footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 32px; border-top: 1px solid var(--line); }
+
+/* ===== Motion ===== */
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+@keyframes type { from { width: 0; } }
+@keyframes caret { 50% { border-color: transparent; } }
+@keyframes float { 50% { transform: translateY(-12px); } }
+/* Scroll-driven reveal (progressive enhancement: content is visible without support) */
+@supports (animation-timeline: view()) {
+  .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 48px; }
+  .hero-text { order: 2; }
+  .bio { margin-inline: auto; }
+  .typing { width: 38ch; }
+  .contact-wrap { grid-template-columns: 1fr; }
+  section { padding: 64px 20px; }
+  nav ul { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="#home" class="logo">Ashwanth Reddy</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero">
+  <div class="hero-text">
+    <h1>Hi, I’m <span class="grad-text">Challa Ashwanth Reddy</span></h1>
+    <p class="typing">Full-stack developer · AI/ML builder</p>
+    <p class="bio">Final-year Computer Science (Cyber Security) student at KMIT, Hyderabad. I build practical, scalable software with Next.js, Node.js and modern AI APIs, and I care about getting the security side right.</p>
+    <a href="#projects" class="btn">View My Work</a>
+    <a href="#contact" class="btn ghost">Contact me</a>
+  </div>
+  <div class="avatar-wrap">
+    <img src="assets/profile.png" alt="Portrait of Challa Ashwanth Reddy">
+  </div>
+</section>
+
+<!-- About & Skills -->
+<section id="about" class="reveal about">
+  <h2>About me &amp; skills</h2>
+  <p>I’m a B.Tech student (CGPA 8/10) interning at NEXT360, where I work across customer apps, backend APIs and databases. Outside work I explore machine learning, privacy-preserving systems and secure coding.</p>
+  <div class="skill-grid">
+    <div class="skill-group"><h3>Languages</h3><div class="pills"><span>Java</span><span>Python</span><span>SQL</span><span>C</span></div></div>
+    <div class="skill-group"><h3>Frontend</h3><div class="pills"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Next.js</span></div></div>
+    <div class="skill-group"><h3>Backend &amp; databases</h3><div class="pills"><span>Node.js</span><span>REST APIs</span><span>PostgreSQL</span><span>MySQL</span><span>Prisma</span></div></div>
+    <div class="skill-group"><h3>AI / ML</h3><div class="pills"><span>Gemini API</span><span>OpenAI API</span><span>Machine Learning</span><span>RAG</span><span>Prompt Engineering</span></div></div>
+    <div class="skill-group"><h3>Cyber security</h3><div class="pills"><span>OWASP Top 10</span><span>API Security</span><span>VAPT Fundamentals</span><span>Secure Coding</span><span>Burp Suite</span><span>Wireshark</span><span>Nmap</span><span>AES/RSA</span></div></div>
+    <div class="skill-group"><h3>Practices &amp; tools</h3><div class="pills"><span>DSA</span><span>OOP</span><span>CI/CD Basics</span><span>Git</span><span>GitHub</span><span>Docker</span><span>VS Code</span></div></div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="reveal">
+  <h2>Projects</h2>
+  <div class="cards">
+
+    <article class="card">
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=70" alt="Abstract cyber security visual" loading="lazy"></div>
+      <div class="card-body">
+        <h3>Privacy-Preserving Multi-Key Image Retrieval</h3>
+        <p>Cloud image retrieval that keeps both images and their feature vectors encrypted, using AES and Threshold Paillier. Similarity search runs over EfficientNetB7 features reduced with PCA and clustered with Mini-Batch K-Means.</p>
+        <div class="tags"><span>Python</span><span>EfficientNetB7</span><span>PCA</span><span>AES</span><span>Paillier</span></div>
+        <a class="link" href="#" target="_blank" rel="noopener">View Project</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=800&q=70" alt="Green plant leaves" loading="lazy"></div>
+      <div class="card-body">
+        <h3>MobilePlantViT</h3>
+        <p>Plant leaf disease classifier combining a CNN with a Vision Transformer, reaching 99% accuracy on the test set. Optimised for mobile inference and served through a REST API for real-time predictions.</p>
+        <div class="tags"><span>Python</span><span>CNN</span><span>Vision Transformer</span><span>REST API</span></div>
+        <a class="link" href="#" target="_blank" rel="noopener">View Project</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=70" alt="Online shopping checkout" loading="lazy"></div>
+      <div class="card-body">
+        <h3>Vanyabhumi</h3>
+        <p>Organic e-commerce platform built at NEXT360. I contributed features across the customer and backend applications.</p>
+        <div class="tags"><span>Next.js</span><span>React</span><span>Prisma</span><span>PostgreSQL</span></div>
+        <a class="link" href="#" target="_blank" rel="noopener">View Project</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=70" alt="Healthcare technology" loading="lazy"></div>
+      <div class="card-body">
+        <h3>Ayurvena</h3>
+        <p>Hospital management system. I mainly own the appointments and patient records modules, with contributions to billing and pharmacy.</p>
+        <div class="tags"><span>Full-stack</span><span>REST APIs</span><span>PostgreSQL</span></div>
+        <a class="link" href="#" target="_blank" rel="noopener">View Project</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Experience timeline -->
+<section id="experience" class="reveal">
+  <h2>Experience &amp; education</h2>
+  <div class="timeline">
+    <div class="t-item">
+      <span class="t-date">Jun 2026 – Present</span>
+      <h3>Software Development Intern, NEXT360</h3>
+      <ul>
+        <li>Built customer and backend features for Vanyabhumi with Next.js, React, Prisma and PostgreSQL.</li>
+        <li>Implemented REST APIs, authentication and backend functionality for the NEXT360 App, and fixed bugs to improve performance.</li>
+        <li>Own the appointments and patient records modules of Ayurvena, plus some billing and pharmacy work.</li>
+        <li>Daily Git use, sprint planning and PR reviews in a team of about five.</li>
+      </ul>
+    </div>
+    <div class="t-item">
+      <span class="t-date">Aug 2023 – Present</span>
+      <h3>B.Tech, Computer Science (Cyber Security)</h3>
+      <p>Keshav Memorial Institute of Technology, Hyderabad · CGPA 8/10</p>
+    </div>
+    <div class="t-item">
+      <span class="t-date">Achievements</span>
+      <h3>Hackathons &amp; problem solving</h3>
+      <ul>
+        <li>Top ranks at CBIT’s Vibe Hackathon (Google Student Ambassador Program).</li>
+        <li>120+ Data Structures and Algorithms problems solved on LeetCode.</li>
+      </ul>
+    </div>
+    <div class="t-item">
+      <span class="t-date">Certifications</span>
+      <h3>Learning highlights</h3>
+      <ul>
+        <li>Network Defense, Cisco Networking Academy</li>
+        <li>Summer Training in AI &amp; Machine Learning, FCC, IIT Hyderabad</li>
+        <li>MySQL, Verzeo · Core Java Programming, Apna College</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="reveal">
+  <h2>Get in touch</h2>
+  <div class="contact-wrap">
+    <div>
+      <p>Open to internships and full-time roles in software development and AI/ML. Send a message and I’ll reply soon.</p>
+      <div class="contact-links">
+        <a href="mailto:ashwanthreddy685@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7zm16 3l-8 5-8-5v7h16z"/></svg>
+          Email me · ashwanthreddy685@gmail.com
+        </a>
+        <a href="tel:+918328644994">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.58 3.6 1 1 0 01-.25 1z"/></svg>
+          Call me · +91 83286 44994
+        </a>
+      </div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/ashwanth-reddy-65b68b352/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.01 5 2.5 2.5 0 01.01-5zM3 9.75h4V21H3zM9.75 9.75h3.84v1.54h.05c.54-1.01 1.84-2.08 3.78-2.08 4.04 0 4.79 2.66 4.79 6.12V21h-4v-5.07c0-1.21-.02-2.77-1.69-2.77-1.69 0-1.95 1.32-1.95 2.68V21h-4z"/></svg></a>
+        <a href="https://github.com/Ashwanthreddy-18" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z"/></svg></a>
+        <a href="mailto:ashwanthreddy685@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7zm16 3l-8 5-8-5v7h16z"/></svg></a>
+      </div>
+    </div>
+    <!-- Messages are delivered by EmailJS; configure it in config.js -->
+    <form id="contact-form" novalidate>
+      <div class="field">
+        <input type="text" id="cf-name" name="name" placeholder="Your name" aria-label="Your name"
+               autocomplete="name" maxlength="80" required aria-describedby="cf-name-error">
+        <p class="field-error" id="cf-name-error" role="alert"></p>
+      </div>
+      <div class="field">
+        <input type="email" id="cf-email" name="email" placeholder="Your email" aria-label="Your email"
+               autocomplete="email" maxlength="160" inputmode="email" required aria-describedby="cf-email-error">
+        <p class="field-error" id="cf-email-error" role="alert"></p>
+      </div>
+      <div class="field">
+        <textarea id="cf-message" name="message" placeholder="Your message" aria-label="Your message"
+                  maxlength="4000" required aria-describedby="cf-message-error"></textarea>
+        <p class="field-error" id="cf-message-error" role="alert"></p>
+      </div>
+      <!-- Honeypot: hidden from people, filled by bots -->
+      <div class="hp" aria-hidden="true">
+        <label for="cf-company">Company</label>
+        <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn" id="contact-submit">Send Message</button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<footer>© 2026 Challa Ashwanth Reddy</footer>
+
+<!-- EmailJS SDK, form config and contact form handler (order matters) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="contact.js" defer></script>
+</body>
+</html>
